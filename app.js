@@ -58,5 +58,7 @@ function displayCountries() {
 function displayContinentOptions() {
     for (const continent of continents) {
         // Slice B: Call continent render function and append to continent selector
+        const option = renderContinentOption(continent);
+        continentSelect.append(option);
     }
 }
