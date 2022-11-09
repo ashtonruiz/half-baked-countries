@@ -29,6 +29,7 @@ async function findCountries(continent) {
     // Slice A: call the asynchronous fetch function to get the countries
     const response = await getCountries(continent);
     // Slice C: add continent argument to getCountries function call
+    let error = response.error;
     // console log the response object to see all of the nested information returned
     // Slice A: set the countries state to the response.data
     countries = response.data;
@@ -42,6 +43,7 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(searchForm);
     // Slice C: Call findCountries with continent from formData
+    findCountries(formData.get('continent'));
 });
 
 /* Display Functions */
@@ -50,6 +52,7 @@ function displayCountries() {
     countryList.innerHTML = '';
 
     for (const country of countries) {
+        const countryEl = renderCountry(country);
         // Slice A: Call imported render countries function and append to list
         countryList.append(countryEl);
     }
